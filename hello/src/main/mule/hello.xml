@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="df3c24db-d70d-42f6-b6f8-ee3e4f833264" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<flow name="helloFlow" doc:id="67a0123c-c22b-40ce-b6e6-a6892e69106b" >
+		<http:listener doc:name="Listener" doc:id="37236af6-e591-4f4b-8b0a-1ed1fc8194cb" config-ref="HTTP_Listener_config" path="/"/>
+		<set-payload value="#['Hello']" doc:name="Set Payload" doc:id="94dabbf5-3a18-4b6b-a330-39f58d79e6a4" />
+		<logger level="INFO" doc:name="Logger" doc:id="d2960823-5e0c-4196-ad62-9c29c1f7f596" message="hi prossess"/>
+		<http:request method="GET" doc:name="Request" doc:id="bac18b4d-8482-4dcb-b036-8614b14bc6fb" />
+	</flow>
+</mule>
